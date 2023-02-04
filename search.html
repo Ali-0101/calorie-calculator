@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calori Calculator</title>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+  <style>
+    * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 16px;
+  }
+  
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .label {
+    border: 2px solid black;
+    width: 270px;
+    margin: 20px auto;
+    padding: 0 7px;
+  }
+  
+  header h1 {
+    text-align: center;
+    margin: -4px 0;
+    letter-spacing: 0.15px
+  }
+  
+  p {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .divider {
+    border-bottom: 1px solid #888989;
+    margin: 2px 0;
+  }
+  
+  .bold {
+    font-weight: 800;
+  }
+  
+  .large {
+    height: 10px;
+  }
+  
+  .large, .medium {
+    background-color: black;
+    border: 0;
+  }
+  
+  .medium {
+    height: 5px;
+  }
+  
+  .small-text {
+    font-size: 0.85rem;
+  }
+  
+  
+  .calories-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  
+  .calories-info h2 {
+    margin: 0;
+  }
+  
+  .left-container p {
+    margin: -5px -2px;
+    font-size: 2em;
+    font-weight: 700;
+  }
+  
+  .calories-info span {
+    margin: -7px -2px;
+    font-size: 2.4em;
+    font-weight: 700;
+  }
+  
+  .right {
+    justify-content: flex-end;
+  }
+  
+  .indent {
+    margin-left: 1em;
+  }
+  
+  .double-indent {
+    margin-left: 2em;
+  }
+  
+  .daily-value p:not(.no-divider) {
+    border-bottom: 1px solid #888989;
+  }
+  
+  .note {
+    font-size: 0.6rem;
+    margin: 5px 0;
+  }
+  </style>
+
+</head>
+<body>
+   <!-- Top Navbar -->
+   <nav class="navbar fixed-top">
+    <div class="container-fluid">
+      <p class="m-auto text-white">Search</p>
+    </div>
+  </nav>
+  <!-- End of Top Navbar -->
+
+   <!-- Bottom Navbar -->
+   <nav class="navbar fixed-bottom nav-bottom">
+   <div class="container-fluid">
+     <ul class="text-white m-auto">
+      <li class="nav-item">
+       <a class="nav-link selected" href="index.html"><i class="bi bi-house"></i><br>Home</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link selected" href="diary.html"><i class="bi bi-book"></i>
+       <br>Diary</a>
+      </li>
+      <li class="nav-item active">
+       <a class="nav-link selected" href="search.html"><i class="bi bi-search"></i><br>Search</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link selected" href="charts.html"><i class="bi bi-bar-chart"></i><br>Charts</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link selected" href="more.html"><i class="bi bi-list"></i><br>More</a>
+      </li>
+     </ul>
+    </div>
+   </nav>
+
+    <!--  -->
+
+    <div class="container" style="margin: 100px auto 150px auto">
+        <h2>Nutrition Facts</h2>
+        <p class="mb-4">Search for Nutrition Facts:</p>  
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <br>
+        <!-- search meat section -->
+        <div class="list-group" id="myList">
+
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#beef">Beef</a>
+
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#chicken">Chicken</a>
+
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#salmon">Salmon</a>
+
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#turkey">Turkey</a>
+
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#pork">Pork</a>
+
+          <!-- search fruit section -->
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#apple">Apple</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#banana">Banana</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#blackberries">Blackberries</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#melon">Melon</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#strawberries">Strawberries</a>
+
+          <!-- search veg section -->
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#beans">Beans (baked beans)</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#broccoli">Broccoli</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#lettuce">Lettuce</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#mushrooms">Mushrooms</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#spinach">Spinach</a>
+
+          <!-- search bread section -->
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#bagel">Bagel</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#bread">Bread wholemeal</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#cornflakes">Cornflakes</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#macaroni">Macaroni</a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#potatoes">Potatoes</a>
+        </div>
+      </div>
+
+      <!-- Modal for Beef -->
+<div class="modal fade" id="beef" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Beef</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">117</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 2.7g</span> <span class="bold right">3%</span></p>
+            <p class="indent no-divider">Saturated Fat 1g <span class="bold right">5%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 55mg</span> <span class="right bold">18%</span></p>
+            <p><span><span class="bold">Sodium</span> 55mg</span> <span class="right bold">3%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="indent no-divider">Total Sugars 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 23g</p>
+            <div class="divider large"></div>
+            <p>Calcium 9mg <span>1%</span></p>
+            <p>Iron 1.9mg <span>11%</span></p>
+            <p class="no-divider">Potassium 342mg <span>7%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for Beef -->
+
+
+<!-- Modal for chicken -->
+<div class="modal fade" id="chicken" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Chicken</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">143</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 8.1g</span> <span class="bold right">10%</span></p>
+            <p class="indent no-divider">Saturated Fat 2.3g <span class="bold right">11%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 86mg</span> <span class="right bold">29%</span></p>
+            <p><span><span class="bold">Sodium</span> 60mg</span> <span class="right bold">3%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="indent no-divider">Total Sugars 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 17g</p>
+            <div class="divider large"></div>
+            <p>Calcium 6mg <span>1%</span></p>
+            <p>Iron 0.8mg <span>11%</span></p>
+            <p class="no-divider">Potassium 522mg <span>11%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for chicken -->
+
+      
+<!-- Modal for salmon fresh -->
+<div class="modal fade" id="salmon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Salmon (fresh)</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">127</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 4.4g</span> <span class="bold right">6%</span></p>
+            <p class="indent no-divider">Saturated Fat 0.8g <span class="bold right">4%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 46mg</span> <span class="right bold">15%</span></p>
+            <p><span><span class="bold">Sodium</span> 75mg</span> <span class="right bold">3%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="indent no-divider">Total Sugars 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 33g</p>
+            <div class="divider large"></div>
+            <p>Vitamin D 18mcg <span>90%</span></p>
+            <p>Calcium 11mg <span>1%</span></p>
+            <p>Iron 0.6mg <span>3%</span></p>
+            <p class="no-divider">Potassium 598mg <span>13%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for salmon fresh -->
+
+<!-- Modal for turkey -->
+<div class="modal fade" id="turkey" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Turkey</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">148</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 7.7g</span> <span class="bold right">10%</span></p>
+            <p class="indent no-divider">Saturated 2g <span class="bold right">10%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 69mg</span> <span class="right bold">23%</span></p>
+            <p><span><span class="bold">Sodium</span> 58mg</span> <span class="right bold">3%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="indent no-divider">Total Sugars 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 20g</p>
+            <div class="divider large"></div>
+            <p>Vitamin D 0.4mcg <span>2%</span></p>
+            <p>Calcium 19mg <span>1%</span></p>
+            <p>Iron 1.1mg <span>6%</span></p>
+            <p class="no-divider">Potassium 237mg <span>5%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for turkey -->
+
+<!-- Modal for pork -->
+<div class="modal fade" id="pork" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Pork</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">263</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 21g</span> <span class="bold right">27%</span></p>
+            <p class="indent no-divider">Saturated Fat 7.9g <span class="bold right">40%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 72mg</span> <span class="right bold">24%</span></p>
+            <p><span><span class="bold">Sodium</span> 56mg</span> <span class="right bold">2%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 17g</p>
+            <div class="divider large"></div>
+            <p>Calcium 14mg <span>1%</span></p>
+            <p>Iron 0.9mg <span>5%</span></p>
+            <p class="no-divider">Potassium 287mg <span>6%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for pork -->
+
+<!-- Modal for apple -->
+<div class="modal fade" id="apple" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Apple</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>125 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">65</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 0g</span> <span class="bold right">27%</span></p>
+            <p><span><span class="bold">Sodium</span> 56mg</span> <span class="right bold">2%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 17g</span> <span class="right bold">6%</span></p>
+            <p class="indent no-divider">Dietary Fiber 3g</p>
+            <div class="divider"></div>
+            <p class="indent no-divider">Sugar 13g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 0.3g</p>
+            <div class="divider large"></div>
+            <p>Vitamin D 0mcg<span>0%</span></p>
+            <p>Calcium 7.5mg <span>1%</span></p>
+            <p>Iron 0.2mg<span>5%</span></p>
+            <p class="no-divider">Potassium 134mg <span>3%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for apple -->
+
+<!-- Modal for Banana -->
+<div class="modal fade" id="banana" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Banana</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>126 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">112</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 0.4g</span> <span class="bold right">1%</span></p>
+            <p><span><span class="bold">Saturated Fat</span> 0.1g</span> <span class="right bold">0%</span></p>
+            <p><span><span class="bold">Sodium</span>1.3mg</span> <span class="right bold">0%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 29g</span> <span class="right bold">11%</span></p>
+            <p class="indent no-divider">Dietary Fiber 3.3g</p>
+            <div class="divider"></div>
+            <p class="indent no-divider">Sugar 15g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 1.4g</p>
+            <div class="divider large"></div>
+            <p>Vitamin D 0mcg<span>0%</span></p>
+            <p>Calcium 6.3mg <span>1%</span></p>
+            <p>Iron 0.3mg<span>2%</span></p>
+            <p class="no-divider">Potassium 451mg <span>10%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for banana -->
+
+<!-- Modal for blackberries -->
+<div class="modal fade" id="blackberries" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Blackberries</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>126 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">112</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 0.4g</span> <span class="bold right">1%</span></p>
+            <p><span><span class="bold">Saturated Fat</span> 0.1g</span> <span class="right bold">0%</span></p>
+            <p><span><span class="bold">Sodium</span>1.3mg</span> <span class="right bold">0%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 29g</span> <span class="right bold">11%</span></p>
+            <p class="indent no-divider">Dietary Fiber 3.3g</p>
+            <div class="divider"></div>
+            <p class="indent no-divider">Sugar 15g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 1.4g</p>
+            <div class="divider large"></div>
+            <p>Vitamin D 0mcg<span>0%</span></p>
+            <p>Calcium 6.3mg <span>1%</span></p>
+            <p>Iron 0.3mg<span>2%</span></p>
+            <p class="no-divider">Potassium 451mg <span>10%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for blackberries -->
+
+<!-- Modal for melon -->
+<div class="modal fade" id="melon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Melon</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>126 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">112</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 0.4g</span> <span class="bold right">1%</span></p>
+            <p><span><span class="bold">Saturated Fat</span> 0.1g</span> <span class="right bold">0%</span></p>
+            <p><span><span class="bold">Sodium</span>1.3mg</span> <span class="right bold">0%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 29g</span> <span class="right bold">11%</span></p>
+            <p class="indent no-divider">Dietary Fiber 3.3g</p>
+            <div class="divider"></div>
+            <p class="indent no-divider">Sugar 15g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 1.4g</p>
+            <div class="divider large"></div>
+            <p>Vitamin D 0mcg<span>0%</span></p>
+            <p>Calcium 6.3mg <span>1%</span></p>
+            <p>Iron 0.3mg<span>2%</span></p>
+            <p class="no-divider">Potassium 451mg <span>10%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for banana -->
+
+<!-- Modal for strawberries -->
+<div class="modal fade" id="strawberries" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Strawberries</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>126 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">112</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 0.4g</span> <span class="bold right">1%</span></p>
+            <p><span><span class="bold">Saturated Fat</span> 0.1g</span> <span class="right bold">0%</span></p>
+            <p><span><span class="bold">Sodium</span>1.3mg</span> <span class="right bold">0%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 29g</span> <span class="right bold">11%</span></p>
+            <p class="indent no-divider">Dietary Fiber 3.3g</p>
+            <div class="divider"></div>
+            <p class="indent no-divider">Sugar 15g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 1.4g</p>
+            <div class="divider large"></div>
+            <p>Vitamin D 0mcg<span>0%</span></p>
+            <p>Calcium 6.3mg <span>1%</span></p>
+            <p>Iron 0.3mg<span>2%</span></p>
+            <p class="no-divider">Potassium 451mg <span>10%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for strawberries -->
+
+<!-- Modal for beans -->
+<div class="modal fade" id="beans" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Beans</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">263</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 21g</span> <span class="bold right">27%</span></p>
+            <p class="indent no-divider">Saturated Fat 7.9g <span class="bold right">40%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 72mg</span> <span class="right bold">24%</span></p>
+            <p><span><span class="bold">Sodium</span> 56mg</span> <span class="right bold">2%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 17g</p>
+            <div class="divider large"></div>
+            <p>Calcium 14mg <span>1%</span></p>
+            <p>Iron 0.9mg <span>5%</span></p>
+            <p class="no-divider">Potassium 287mg <span>6%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for beans -->
+
+<!-- Modal for broccoli -->
+<div class="modal fade" id="broccoli" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Broccoli</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">263</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 21g</span> <span class="bold right">27%</span></p>
+            <p class="indent no-divider">Saturated Fat 7.9g <span class="bold right">40%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 72mg</span> <span class="right bold">24%</span></p>
+            <p><span><span class="bold">Sodium</span> 56mg</span> <span class="right bold">2%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 17g</p>
+            <div class="divider large"></div>
+            <p>Calcium 14mg <span>1%</span></p>
+            <p>Iron 0.9mg <span>5%</span></p>
+            <p class="no-divider">Potassium 287mg <span>6%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for broccoli -->
+
+<!-- Modal for lettuce -->
+<div class="modal fade" id="lettuce" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Lettuce</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">263</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 21g</span> <span class="bold right">27%</span></p>
+            <p class="indent no-divider">Saturated Fat 7.9g <span class="bold right">40%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 72mg</span> <span class="right bold">24%</span></p>
+            <p><span><span class="bold">Sodium</span> 56mg</span> <span class="right bold">2%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 17g</p>
+            <div class="divider large"></div>
+            <p>Calcium 14mg <span>1%</span></p>
+            <p>Iron 0.9mg <span>5%</span></p>
+            <p class="no-divider">Potassium 287mg <span>6%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for lettuce -->
+
+<!-- Modal for mushrooms -->
+<div class="modal fade" id="mushrooms" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Mushrooms</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">263</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 21g</span> <span class="bold right">27%</span></p>
+            <p class="indent no-divider">Saturated Fat 7.9g <span class="bold right">40%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 72mg</span> <span class="right bold">24%</span></p>
+            <p><span><span class="bold">Sodium</span> 56mg</span> <span class="right bold">2%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 17g</p>
+            <div class="divider large"></div>
+            <p>Calcium 14mg <span>1%</span></p>
+            <p>Iron 0.9mg <span>5%</span></p>
+            <p class="no-divider">Potassium 287mg <span>6%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for mushrooms -->
+
+<!-- Modal for spinach -->
+<div class="modal fade" id="spinach" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Spinach</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">263</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 21g</span> <span class="bold right">27%</span></p>
+            <p class="indent no-divider">Saturated Fat 7.9g <span class="bold right">40%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 72mg</span> <span class="right bold">24%</span></p>
+            <p><span><span class="bold">Sodium</span> 56mg</span> <span class="right bold">2%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 17g</p>
+            <div class="divider large"></div>
+            <p>Calcium 14mg <span>1%</span></p>
+            <p>Iron 0.9mg <span>5%</span></p>
+            <p class="no-divider">Potassium 287mg <span>6%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for spinach -->
+
+<!-- Modal for bagel -->
+<div class="modal fade" id="bagel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Bagel</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">263</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 21g</span> <span class="bold right">27%</span></p>
+            <p class="indent no-divider">Saturated Fat 7.9g <span class="bold right">40%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 72mg</span> <span class="right bold">24%</span></p>
+            <p><span><span class="bold">Sodium</span> 56mg</span> <span class="right bold">2%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 17g</p>
+            <div class="divider large"></div>
+            <p>Calcium 14mg <span>1%</span></p>
+            <p>Iron 0.9mg <span>5%</span></p>
+            <p class="no-divider">Potassium 287mg <span>6%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for bagel -->
+
+<!-- Modal for bread -->
+<div class="modal fade" id="bread" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Bread</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">263</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 21g</span> <span class="bold right">27%</span></p>
+            <p class="indent no-divider">Saturated Fat 7.9g <span class="bold right">40%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 72mg</span> <span class="right bold">24%</span></p>
+            <p><span><span class="bold">Sodium</span> 56mg</span> <span class="right bold">2%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 17g</p>
+            <div class="divider large"></div>
+            <p>Calcium 14mg <span>1%</span></p>
+            <p>Iron 0.9mg <span>5%</span></p>
+            <p class="no-divider">Potassium 287mg <span>6%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for bread -->
+
+<!-- Modal for cornflakes -->
+<div class="modal fade" id="cornflakes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Cornflakes</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">263</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 21g</span> <span class="bold right">27%</span></p>
+            <p class="indent no-divider">Saturated Fat 7.9g <span class="bold right">40%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 72mg</span> <span class="right bold">24%</span></p>
+            <p><span><span class="bold">Sodium</span> 56mg</span> <span class="right bold">2%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 17g</p>
+            <div class="divider large"></div>
+            <p>Calcium 14mg <span>1%</span></p>
+            <p>Iron 0.9mg <span>5%</span></p>
+            <p class="no-divider">Potassium 287mg <span>6%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for cornflakes -->
+
+<!-- Modal for macaroni -->
+<div class="modal fade" id="macaroni" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Macaroni</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">263</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 21g</span> <span class="bold right">27%</span></p>
+            <p class="indent no-divider">Saturated Fat 7.9g <span class="bold right">40%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 72mg</span> <span class="right bold">24%</span></p>
+            <p><span><span class="bold">Sodium</span> 56mg</span> <span class="right bold">2%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 17g</p>
+            <div class="divider large"></div>
+            <p>Calcium 14mg <span>1%</span></p>
+            <p>Iron 0.9mg <span>5%</span></p>
+            <p class="no-divider">Potassium 287mg <span>6%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for macaroni -->
+
+<!-- Modal for potatoes -->
+<div class="modal fade" id="potatoes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Potatoes</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="label">
+          <header>
+            <h1 class="bold">Nutrition Facts</h1>
+            <div class="divider"></div>
+            <p></p>
+            <p class="bold">Portion Size<span>100 g</span></p>
+          </header>
+          <div class="divider large"></div>
+          <div class="calories-info">
+            <div class="left-container">
+              <h2 class="bold small-text">Amount Per Portion</h2>
+              <p>Calories</p>
+            </div>
+            <span class="right">263</span>
+          </div>
+          <div class="divider medium"></div>
+          <div class="daily-value small-text">
+            <p class="bold right no-divider">% Daily Value *</p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Total Fat</span> 21g</span> <span class="bold right">27%</span></p>
+            <p class="indent no-divider">Saturated Fat 7.9g <span class="bold right">40%</span></p>
+            <div class="divider"></div>
+            <p><span><span class="bold">Cholesterol</span> 72mg</span> <span class="right bold">24%</span></p>
+            <p><span><span class="bold">Sodium</span> 56mg</span> <span class="right bold">2%</span></p>
+            <p><span><span class="bold">Total Carbohydrate</span> 0g</span> <span class="right bold">0%</span></p>
+            <p class="indent no-divider">Dietary Fiber 0g</p>
+            <div class="divider"></div>
+            <p class="no-divider"><span class="bold">Protein</span> 17g</p>
+            <div class="divider large"></div>
+            <p>Calcium 14mg <span>1%</span></p>
+            <p>Iron 0.9mg <span>5%</span></p>
+            <p class="no-divider">Potassium 287mg <span>6%</span></p>
+          </div>
+          <div class="divider medium"></div>
+          <p class="note">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily
+            diet. 2,000 calories a day is used for general nutrition advice.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal for potatoes -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myList a").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+        </script>
+</body>
+</html>

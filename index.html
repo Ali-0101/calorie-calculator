@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calori Calculator</title>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <link rel="stylesheet" href="styles.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+  <style>
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+   <!-- Top Navbar -->
+   <nav class="navbar fixed-top">
+    <div class="container-fluid">
+      <p class="m-auto text-white">Home</p>
+    </div>
+  </nav>
+  <!-- End of Top Navbar -->
+
+   <!-- Bottom Navbar -->
+   <nav class="navbar fixed-bottom nav-bottom">
+   <div class="container-fluid">
+     <ul class="text-white">
+      <li class="nav-item active">
+       <a class="nav-link selected" href="index.html"><i class="bi bi-house"></i><br>Home</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link selected" href="diary.html"><i class="bi bi-book"></i>
+       <br>Diary</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link selected" href="search.html"><i class="bi bi-search"></i><br>Search</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link selected" href="charts.html"><i class="bi bi-bar-chart"></i><br>Charts</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link selected" href="more.html"><i class="bi bi-list"></i><br>More</a>
+      </li>
+     </ul>
+    </div>
+   </nav>
+
+    <!-- Bottom Navbar -->
+f
+    <div class="container">
+        <!-- welcome text row-->
+          <h4 class="row justify-content-center mt-5" id="welcome">Welcome</h4>
+
+        <!-- row with carousels-->
+        <div class="row align-items-center justify-content-around mt-4">
+            <div class="col-sm-7 firstCol p-0">
+                 <!-- 3 IMAGES A BOOTSTRAP SLIDER WITH CAPTIONS -->
+		
+   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="img/keto.jpg" alt="First Slide" class="d-block w-100">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>Ketogenic diet</h3>
+  <p>A diet high in fat and low in carbohydrates (sugars) that causes the body to break down fat into molecules called ketones.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img/carnivore.jpg" alt="Second Slide" class="d-block w-100">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>Carnivore diet</h3>
+  <p>The carnivore diet is a more extreme version of the keto diet, and, like the name suggests, involves eating only animal foods.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img/intermittent-fasting.jpg" alt="Third Slide" class="d-block w-100">
+        <div class="carousel-caption d-none d-md-block text-secondary">
+          <h3>Intermittent fasting</h3>
+  <p>Intermittent fasting means that you don't eat for a period of time each day or week.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+   <!-- end of 3 IMAGES A BOOTSTRAP SLIDER WITH CAPTIONS -->
+            
+    <!-- accordion -->
+            <div class="col-sm-4 firstCol px-0 py-5">
+                   <!-- Help section dropdown -->
+                   <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          How it works?
+                        </button>
+                      </h2>
+                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <p>
+                          <strong>To calculate your calories,</strong> go to <a href="diary.html">diary</a> page and choose food you ate thoughout the day and it will calculate total calories at the top right.
+                        </p>
+                          <p>
+                          To find nutritional facts go to <a href="search.html">search</a> page from the navigation at the bottom and find the food and click on it then you will see the nutritional fact.
+                        </p>
+                        <p>
+                          You can always see your macros in <a href="charts.html">charts</a> page from the navigation at the bottom.
+                        </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          
+                          Tips for weight loss.
+                        </button>
+                      </h2>
+                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <p>
+                            1. Do not skip breakfast
+                            Skipping breakfast will not help you lose weight. You could miss out on essential nutrients and you may end up snacking more throughout the day because you feel hungry.
+                          </p>
+                          <p>2. Eat regular meals
+                            Eating at regular times during the day helps burn calories at a faster rate. It also reduces the temptation to snack on foods high in fat and sugar.
+                          </p>
+                          <p>3. Eat plenty of fruit and veg
+                            Fruit and veg are low in calories and fat, and high in fibre – 3 essential ingredients for successful weight loss. They also contain plenty of vitamins and minerals.
+                          </p>
+                          <p>4. Get more active
+                            Being active is key to losing weight and keeping it off. As well as providing lots of health benefits, exercise can help burn off the excess calories you cannot lose through diet alone.
+                          </p>
+      
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Tips for weight gain.
+                        </button>
+                      </h2>
+                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <p>
+                            If diet is the cause of your low weight, changing to a healthy, balanced diet that provides the right amount of calories for your age, height and how active you are can help you achieve a healthy weight.
+                          </p>
+                          <p>
+                            Aim to gain weight gradually until you reach a healthy weight.
+                          </p>
+                          <p>
+                            Try to avoid relying on high-calorie foods full of saturated fat and sugar – such as chocolate, cakes and sugary drinks – to gain weight.
+                          </p>
+                          <p>
+                            These foods can increase body fat instead of lean body mass and increase your risk of developing high levels of cholesterol in your blood.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+   
+   <!-- accordion -->
+            </div>
+        </div>
+
+        
+    </div>
+
+
+
+
+
+    
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

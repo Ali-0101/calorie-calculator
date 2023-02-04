@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+}
+
+
+/* Top Navbar */
+.fixed-top {
+  background-color: #03C263;
+}
+
+/* Bottom Navbar */
+
+.fixed-bottom {
+  background-color: #03C263;
+  border-top-left-radius:300% 150%;
+  border-top-right-radius:300% 150%
+}
+
+.nav-item {
+  cursor: pointer;
+}
+
+.nav-item.active {
+  font-weight: 400;
+  color: blue;
+  font-size: 1em;
+}
+
+.nav-item.active .bi{
+  font-weight: 600;
+  color: blue;
+  font-size: 1.3em;
+}
+
+.text-white {
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-evenly; 
+  align-items: center;
+}
+
+
+li a {
+  width: 72px;
+  height: auto;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 18px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+ul a:focus {
+  background-color: #52cc81;
+}
+
+ul a:hover {
+  color: rgb(5, 30, 255);
+  border-radius: 20px;
+}
+
+/* end of Bottom Navbar*/
+
+/* Home Page */
+.accordion {
+  margin: 0 auto 50px auto;
+  width: 100%;
+  align-items: center;
+}
+/* end of Home Page */
+
+/* Charts Page */
+
+.row .protein {
+  background-color: #b91d47; 
+  width: 25px; 
+  height: 25px; 
+  border-radius: 50px; 
+  margin-right: 10px;
+}
+
+.row .fat {
+  background-color: #2b5797; 
+  width: 25px; height: 25px; 
+  border-radius: 50px; 
+  margin-right: 10px;
+}
+
+.row .carb {
+  background-color: #00aba9; 
+  width: 25px; height: 25px; 
+  border-radius: 50px; 
+  margin-right: 10px;
+}
+
+/* end of Charts Page */
+
+/* More Page */
+.profile img {
+  border: 3px solid rgb(206, 153, 255); 
+  border-radius: 50%;
+}
+/* end of More Page */
