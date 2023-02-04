@@ -57,7 +57,7 @@ li a {
 }
 
 ul a:focus {
-  background-color: #77d199;
+  background-color: rgb(79, 240, 162);
 }
 
 ul a:hover {
